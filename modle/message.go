@@ -6,3 +6,5 @@ type Message struct {
 	ReceiveUid string `json:"ReceiveUid"`
 	Detail     string `json:"Detail"`
 }
+
+var LoginUser []string

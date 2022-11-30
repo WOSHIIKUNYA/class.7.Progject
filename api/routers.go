@@ -11,3 +11,14 @@ func SetApi() {
 	}
 	r.Run()
 }
+func Message() {
+	r := gin.Default()
+	x := r.Group("Second")
+	{
+		x.GET("/Send", SendMessage)
+		x.POST("/GetMessage", GetMessage)
+
+	}
+	r.Run()
+
+}

@@ -48,7 +48,8 @@ func login(m *gin.Context) {
 		m.String(200, "用户名或密码错误")
 		return
 	}
-	m.String(200, "已登入，欢迎:")
 	m.JSON(200, x.Name)
 	m.SetCookie("Name", x.Password, 0, "", "/", false, false)
+	modle.LoginUser = append(modle.LoginUser, x.Name)
+	m.String(200, "已登入，欢迎:", x.Name)
 }
