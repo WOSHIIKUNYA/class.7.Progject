@@ -1,8 +1,8 @@
 package service
 
 import (
-	"test/dao"
-	"test/modle"
+	"class.7.Progject/dao"
+	"class.7.Progject/modle"
 )
 
 func CheckUser(m modle.User) bool {

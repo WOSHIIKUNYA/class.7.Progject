@@ -1,10 +1,10 @@
 package api
 
 import (
+	"class.7.Progject/modle"
+	"class.7.Progject/service"
+	"class.7.Progject/util"
 	"github.com/gin-gonic/gin"
-	"test/modle"
-	"test/service"
-	"test/util"
 )
 
 func register(m *gin.Context) {

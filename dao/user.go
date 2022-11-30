@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"test/modle"
+	"class.7.Progject/modle"
 )
 
 func Repeat(m modle.User) bool {
