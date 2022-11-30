@@ -8,17 +8,17 @@ import (
 )
 
 func register(m *gin.Context) {
-	Name := m.PostForm("Name")
-	Password := m.PostForm("Password")
-	if Name == "" {
+	var z modle.User
+	m.ShouldBind(&z)
+	if z.Name == "" {
 		m.String(200, "傻逼你账号都没输入")
 		return
 	}
-	if Password == "" {
+	if z.Password == "" {
 		m.String(200, "你的密码呢？")
 		return
 	}
-	x := modle.User{Password: Password, Name: Name}
+	x := modle.User{Password: z.Password, Name: z.Name}
 	p := service.CheckUser(x)
 	if p == false {
 		m.String(200, "用户名重复")

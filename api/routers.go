@@ -6,19 +6,15 @@ func SetApi() {
 	r := gin.Default()
 	x := r.Group("/First")
 	{
-		x.POST("/register", register)
 		x.POST("/login", login)
+
+		x.POST("/register", register)
 	}
-	r.Run()
-}
-func Message() {
-	r := gin.Default()
-	x := r.Group("Second")
+	f := r.Group("/Second")
 	{
-		x.GET("/Send", SendMessage)
-		x.POST("/GetMessage", GetMessage)
-
+		f.POST("/GiveMessage", GiveMessage)
+		f.POST("/GetMessage", GetMessage)
 	}
-	r.Run()
 
+	r.Run()
 }
