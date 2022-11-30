@@ -7,5 +7,6 @@ import (
 
 func main() {
 	dao.Open()
-	api.SetApi()
+	go api.SetApi()
+	api.Message()
 }
