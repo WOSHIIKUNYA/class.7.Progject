@@ -17,3 +17,7 @@ func Change(message modle.Change) error {
 	err := dao.Change(message)
 	return err
 }
+func DeleteMessage(message modle.Add3) error {
+	err := dao.DeleteMessage(message)
+	return err
+}

@@ -27,3 +27,7 @@ type Add2 struct {
 	SendUid    string `json:"SendUid"`
 	ReceiveUid string `json:"ReceiveUid"`
 }
+type Add3 struct {
+	SendUid    string `json:"SendUid"`
+	ReceiveUid string `json:"ReceiveUid"`
+}

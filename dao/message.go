@@ -22,7 +22,9 @@ func Get(m string) (error, []modle.Add1) {
 }
 func Change(m modle.Change) error {
 	x, err := database.Query("select Mid,SendUid,ReceiveUid from message")
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 	var p int
 	for x.Next() {
 		var l modle.Add2
@@ -35,5 +37,23 @@ func Change(m modle.Change) error {
 	fmt.Println(p)
 	_, err = database.Exec("update message set Detail=? where Mid=?", m.Detail, p)
 	fmt.Println(err)
+	return err
+}
+func DeleteMessage(r modle.Add3) error {
+	x, err := database.Query("select Mid,SendUid,ReceiveUid from message")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var p int
+	for x.Next() {
+		var l modle.Add2
+		x.Scan(&l.Id, &l.SendUid, &l.ReceiveUid)
+		if r.SendUid == l.SendUid && r.ReceiveUid == l.ReceiveUid {
+			p = l.Id
+			break
+		}
+	}
+	fmt.Println(p)
+	_, err = database.Exec("delete from message where Mid=?", p)
 	return err
 }

@@ -63,3 +63,17 @@ func ChangeMessage(m *gin.Context) {
 	}
 	m.String(200, "已成功修改")
 }
+func DeleteMessage(m *gin.Context) {
+	if modle.LoginUser == "" {
+		m.String(200, "请先登录")
+		return
+	}
+	var x modle.Add3
+	m.ShouldBind(&x)
+	x.SendUid = modle.LoginUser
+	err := service.DeleteMessage(x)
+	if err != nil {
+		util.Number5InternalErr(m)
+	}
+	m.String(200, "删除成功")
+}
