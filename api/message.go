@@ -45,3 +45,22 @@ func GetMessage(m *gin.Context) {
 		m.JSON(200, l[x])
 	}
 }
+func ChangeMessage(m *gin.Context) {
+	m.String(200, "sda")
+	if modle.LoginUser == "" {
+		m.String(200, "请先登录")
+		return
+	}
+	var R modle.Message
+	var xx modle.Add
+	m.ShouldBind(&xx)
+	R.SendUid = modle.LoginUser
+	R.Detail = xx.Detail
+	R.ReceiveUid = xx.ReceiveUid
+	err := service.Change(R)
+	if err != nil {
+		util.Number3InternalErr(m)
+		return
+	}
+	m.String(200, "已成功发送")
+}

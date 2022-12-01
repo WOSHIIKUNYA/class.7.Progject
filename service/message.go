@@ -13,3 +13,7 @@ func Get(m string) (error, []modle.Add1) {
 	err, l := dao.Get(m)
 	return err, l
 }
+func Change(message modle.Message) error {
+	err := dao.Change(message)
+	return err
+}

@@ -20,3 +20,10 @@ func Get(m string) (error, []modle.Add1) {
 	}
 	return err, z
 }
+func Change(m modle.Message) error {
+	_, err := database.Exec("update message set ReceiveUid=? where SendUid=? ", m.ReceiveUid, m.SendUid)
+	fmt.Println(err)
+	_, err = database.Exec("update message set Detail=? where SendUid=? ", m.Detail, m.SendUid)
+	fmt.Println(err)
+	return err
+}
