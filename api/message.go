@@ -8,7 +8,6 @@ import (
 )
 
 func GiveMessage(m *gin.Context) {
-	m.String(200, "sda")
 	if modle.LoginUser == "" {
 		m.String(200, "请先登录")
 		return
