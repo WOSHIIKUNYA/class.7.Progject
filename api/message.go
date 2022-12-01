@@ -14,19 +14,21 @@ func GiveMessage(m *gin.Context) {
 		return
 	}
 	var R modle.Message
-	var x modle.Add
-	m.ShouldBind(&x)
+	var xx modle.Add
+	m.ShouldBind(&xx)
+	m.JSON(200, xx)
 	R.SendUid = modle.LoginUser
-	R.Detail = x.Detail
-	R.ReceiveUid = x.ReceiveUid
+	R.Detail = xx.Detail
+	R.ReceiveUid = xx.ReceiveUid
 	m.JSON(200, R)
 	err := service.Send(R)
 	if err != nil {
 		util.Number3InternalErr(m)
 		return
 	}
-	m.String(200, "已登录")
+	m.String(200, "已成功发送")
 }
 func GetMessage(m *gin.Context) {
+m.ShouldBind(&)
 
 }

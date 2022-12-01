@@ -12,8 +12,9 @@ func SetApi() {
 	}
 	f := r.Group("/Second")
 	{
-		f.POST("/GiveMessage", GiveMessage)
+		f.GET("/GiveMessage", GiveMessage)
 		f.POST("/GetMessage", GetMessage)
+
 	}
 
 	r.Run()
