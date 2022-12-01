@@ -17,6 +17,12 @@ func SetApi() {
 		f.PUT("/ChangeMessage", ChangeMessage)
 		f.DELETE("/DeleteMessage", DeleteMessage)
 	}
-
+	z := r.Group("/Thread")
+	{
+		z.GET("/PresentComment")
+		z.POST("/Comment")
+		z.PUT("changeComment")
+		z.DELETE("ChangeComment")
+	}
 	r.Run()
 }
