@@ -46,12 +46,11 @@ func GetMessage(m *gin.Context) {
 	}
 }
 func ChangeMessage(m *gin.Context) {
-	m.String(200, "sda")
 	if modle.LoginUser == "" {
 		m.String(200, "请先登录")
 		return
 	}
-	var R modle.Message
+	var R modle.Change
 	var xx modle.Add
 	m.ShouldBind(&xx)
 	R.SendUid = modle.LoginUser
@@ -62,5 +61,5 @@ func ChangeMessage(m *gin.Context) {
 		util.Number3InternalErr(m)
 		return
 	}
-	m.String(200, "已成功发送")
+	m.String(200, "已成功修改")
 }

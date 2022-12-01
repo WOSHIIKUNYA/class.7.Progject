@@ -20,10 +20,20 @@ func Get(m string) (error, []modle.Add1) {
 	}
 	return err, z
 }
-func Change(m modle.Message) error {
-	_, err := database.Exec("update message set ReceiveUid=? where SendUid=? ", m.ReceiveUid, m.SendUid)
+func Change(m modle.Change) error {
+	x, err := database.Query("select Mid,SendUid,ReceiveUid from message")
 	fmt.Println(err)
-	_, err = database.Exec("update message set Detail=? where SendUid=? ", m.Detail, m.SendUid)
+	var p int
+	for x.Next() {
+		var l modle.Add2
+		x.Scan(&l.Id, &l.SendUid, &l.ReceiveUid)
+		if m.SendUid == l.SendUid && m.ReceiveUid == l.ReceiveUid {
+			p = l.Id
+			break
+		}
+	}
+	fmt.Println(p)
+	_, err = database.Exec("update message set Detail=? where Mid=?", m.Detail, p)
 	fmt.Println(err)
 	return err
 }

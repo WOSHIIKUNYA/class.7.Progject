@@ -14,7 +14,7 @@ func SetApi() {
 	{
 		f.GET("/GiveMessage", GiveMessage)
 		f.POST("/GetMessage", GetMessage)
-		f.PUT("/ChangeMessage", ChangeMessage)
+		f.POST("/ChangeMessage", ChangeMessage)
 		f.DELETE("DeleteMessage")
 	}
 
