@@ -1,7 +1,11 @@
 package service
 
-type Comment struct {
-	Message   string `json:"Message"`
-	Detail    string `json:"Detail"`
-	Commenter string `json:"Commenter"`
+import (
+	"class.7.Progject/dao"
+	"class.7.Progject/modle"
+)
+
+func SendComment(message modle.Comment) error {
+	err := dao.SendComment(message)
+	return err
 }

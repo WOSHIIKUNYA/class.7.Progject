@@ -21,3 +21,6 @@ func DeleteMessage(message modle.Add3) error {
 	err := dao.DeleteMessage(message)
 	return err
 }
+func CheckMessage(m string) {
+	dao.CheckMessage(m)
+}

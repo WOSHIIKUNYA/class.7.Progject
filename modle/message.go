@@ -13,6 +13,7 @@ type Add struct {
 	ReceiveUid string `json:"ReceiveUid"`
 	Detail     string `json:"Detail"`
 }
+
 type Change struct {
 	SendUid    string `json:"SendUid"`
 	ReceiveUid string `json:"ReceiveUid"`

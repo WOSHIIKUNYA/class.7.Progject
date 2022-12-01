@@ -12,17 +12,17 @@ func SetApi() {
 	}
 	f := r.Group("/Second")
 	{
-		f.GET("/GiveMessage", GiveMessage)
+		f.GET("/SendMessage", GiveMessage)
 		f.POST("/GetMessage", GetMessage)
 		f.PUT("/ChangeMessage", ChangeMessage)
 		f.DELETE("/DeleteMessage", DeleteMessage)
 	}
 	z := r.Group("/Thread")
 	{
-		z.GET("/PresentComment")
+		z.GET("/PresentComment", SendComment)
 		z.POST("/Comment")
-		z.PUT("changeComment")
-		z.DELETE("ChangeComment")
+		z.PUT("/changeComment")
+		z.DELETE("/ChangeComment")
 	}
 	r.Run()
 }

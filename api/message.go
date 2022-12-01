@@ -15,6 +15,14 @@ func GiveMessage(m *gin.Context) {
 	var R modle.Message
 	var xx modle.Add
 	m.ShouldBind(&xx)
+	if xx.ReceiveUid == "" {
+		m.String(200, "没输入关键词")
+		return
+	}
+	if xx.Detail == "" {
+		m.String(200, "没输入内容")
+		return
+	}
 	m.JSON(200, xx)
 	R.SendUid = modle.LoginUser
 	R.Detail = xx.Detail
@@ -49,9 +57,9 @@ func ChangeMessage(m *gin.Context) {
 		m.String(200, "请先登录")
 		return
 	}
-	var R modle.Change
 	var xx modle.Add
 	m.ShouldBind(&xx)
+	var R modle.Change
 	R.SendUid = modle.LoginUser
 	R.Detail = xx.Detail
 	R.ReceiveUid = xx.ReceiveUid

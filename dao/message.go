@@ -6,7 +6,7 @@ import (
 )
 
 func Send(m modle.Message) error {
-	_, err := database.Exec("insert into message (Senduid,ReceiveUid,Detail) values (?,?,?)", m.SendUid, m.Detail)
+	_, err := database.Exec("insert into message (Senduid,ReceiveUid,Detail) values (?,?,?)", m.SendUid, m.ReceiveUid, m.Detail)
 	return err
 }
 func Get(m string) (error, []modle.Add1) {
@@ -57,6 +57,22 @@ func DeleteMessage(r modle.Add3) error {
 	_, err = database.Exec("update  message set Detail=? where Mid=?", "has been delete", p)
 	if err != nil {
 		fmt.Println(err)
+	}
+	return err
+}
+func CheckMessage(m string) error {
+	x, err := database.Query("select Detail from message")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var f string
+	fmt.Println(m)
+	for x.Next() {
+		x.Scan(&f)
+		if f == m {
+			modle.Comment2 = true
+			break
+		}
 	}
 	return err
 }
