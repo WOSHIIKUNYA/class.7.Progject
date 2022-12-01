@@ -28,7 +28,7 @@ func Login(m modle.User) bool {
 		j = append(j, x)
 	}
 	for P := 0; P < len(j); P++ {
-		if m.Name == j[P].Name || m.Password == j[P].Password {
+		if m.Name == j[P].Name && m.Password == j[P].Password {
 			return true
 		}
 	}
