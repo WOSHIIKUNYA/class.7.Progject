@@ -5,6 +5,9 @@ type Comment struct {
 	Detail    string `json:"Detail"`
 	Commenter string `json:"Commenter"`
 }
+
+var CommentBook []Comment
+
 type Comment1 struct {
 	Message string `json:"comment"`
 	Detail  string `json:"Detail"`

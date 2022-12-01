@@ -9,3 +9,7 @@ func SendComment(message modle.Comment) error {
 	err := dao.SendComment(message)
 	return err
 }
+func GetComment(message string) error {
+	err := dao.GetComment(message)
+	return err
+}

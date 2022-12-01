@@ -20,7 +20,7 @@ func SetApi() {
 	z := r.Group("/Thread")
 	{
 		z.GET("/PresentComment", SendComment)
-		z.POST("/Comment")
+		z.POST("/GetComment", GetComment)
 		z.PUT("/changeComment")
 		z.DELETE("/ChangeComment")
 	}
