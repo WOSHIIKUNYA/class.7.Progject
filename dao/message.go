@@ -54,6 +54,9 @@ func DeleteMessage(r modle.Add3) error {
 		}
 	}
 	fmt.Println(p)
-	_, err = database.Exec("delete from message where Mid=?", p)
+	_, err = database.Exec("update  message set Detail=? where Mid=?", "has been delete", p)
+	if err != nil {
+		fmt.Println(err)
+	}
 	return err
 }
