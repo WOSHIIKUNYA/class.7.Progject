@@ -6,7 +6,21 @@ import (
 )
 
 func Send(m modle.Message) error {
-	fmt.Println(m.Detail)
 	_, err := database.Exec("insert into message (Senduid,ReceiveUid,Detail) values (?,?,?)", m.SendUid, m.ReceiveUid, m.Detail)
 	return err
+}
+func Get(m string) (error, []modle.Add1) {
+	x, err := database.Query("select SendUid,ReceiveUid,Detail from message")
+	var z []modle.Add1
+	var l modle.Add1
+	var o string
+	fmt.Println(err)
+	for x.Next() {
+		x.Scan(&l.SendUid, &o, &l.Detail)
+		if o == m {
+			z = append(z, l)
+		}
+	}
+
+	return err, z
 }

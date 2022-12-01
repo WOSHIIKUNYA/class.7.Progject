@@ -13,3 +13,7 @@ type Add struct {
 	ReceiveUid string `json:"ReceiveUid"`
 	Detail     string `json:"Detail"`
 }
+type Add1 struct {
+	SendUid string `json:"SendUid"`
+	Detail  string `json:"Detail"`
+}

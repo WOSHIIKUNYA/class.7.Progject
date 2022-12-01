@@ -29,6 +29,19 @@ func GiveMessage(m *gin.Context) {
 	m.String(200, "已成功发送")
 }
 func GetMessage(m *gin.Context) {
-m.ShouldBind(&)
-
+	if modle.LoginUser == "" {
+		m.String(200, "请先登录")
+		return
+	}
+	err, l := service.Get(modle.LoginUser)
+	if err != nil {
+		util.Number4InternalErr(m)
+		return
+	}
+	if l == nil {
+		m.String(200, "还没有信息")
+	}
+	for x := 0; x < len(l); x++ {
+		m.JSON(200, l[x])
+	}
 }
