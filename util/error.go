@@ -43,6 +43,10 @@ var Number8 = reTemplate{
 	Status: 500,
 	Info:   "Number6",
 }
+var Number9 = reTemplate{
+	Status: 500,
+	Info:   "Number6",
+}
 
 func Number1InternalErr(m *gin.Context) {
 	m.JSON(500, Number1)
@@ -67,4 +71,7 @@ func Number7InternalErr(m *gin.Context) {
 }
 func Number8InternalErr(m *gin.Context) {
 	m.JSON(500, Number8)
+}
+func Number9InternalErr(m *gin.Context) {
+	m.JSON(500, Number9)
 }

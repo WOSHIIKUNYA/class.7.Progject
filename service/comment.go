@@ -21,3 +21,6 @@ func DeleteComment(message modle.Comment) error {
 	err := dao.DeleteComment(message)
 	return err
 }
+func CheckComment(m string) {
+	dao.CheckComment(m)
+}

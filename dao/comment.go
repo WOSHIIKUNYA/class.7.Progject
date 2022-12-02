@@ -62,3 +62,18 @@ func DeleteComment(m modle.Comment) error {
 	}
 	return err
 }
+func CheckComment(m string) {
+	x, err := database.Query("select detail from comment")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var f string
+	for x.Next() {
+		x.Scan(&f)
+		fmt.Println(f)
+		if f == m {
+			modle.Comment2 = true
+			break
+		}
+	}
+}

@@ -31,6 +31,7 @@ func SendComment(m *gin.Context) {
 		return
 	}
 	m.String(200, "已成功评论")
+	modle.Comment2 = false
 }
 func GetComment(m *gin.Context) {
 	if modle.LoginUser == "" {
@@ -45,7 +46,7 @@ func GetComment(m *gin.Context) {
 	}
 	service.CheckMessage(x.Message)
 	if modle.Comment2 == false {
-		m.String(200, "没有该评论")
+		m.String(200, "没有该留言")
 		return
 	}
 	err := service.GetComment(x.Message)
@@ -109,4 +110,29 @@ func DeleteComment(m *gin.Context) {
 		return
 	}
 	m.String(200, "删除成功")
+}
+func RespondComment(m *gin.Context) {
+	if modle.LoginUser == "" {
+		m.String(200, "请先登录")
+		return
+	}
+	var R modle.Comment
+	var zz modle.Comment1
+	m.ShouldBind(&zz)
+	R.Commenter = modle.LoginUser
+	R.Message = zz.Message
+	R.Detail = zz.Detail
+	service.CheckComment(zz.Message)
+	if modle.Comment2 == false {
+		m.String(200, "没有该评论")
+		return
+	}
+	m.JSON(200, R)
+	err := service.SendComment(R)
+	if err != nil {
+		util.Number9InternalErr(m)
+		return
+	}
+	m.String(200, "已成功评论")
+	modle.Comment2 = false
 }
