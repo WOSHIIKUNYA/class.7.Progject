@@ -17,3 +17,7 @@ func ChangeComment(message modle.Comment) error {
 	err := dao.ChangeComment(message)
 	return err
 }
+func DeleteComment(message modle.Comment) error {
+	err := dao.DeleteComment(message)
+	return err
+}

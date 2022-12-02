@@ -71,7 +71,7 @@ func ChangeComment(m *gin.Context) {
 	R.Detail = xx.Detail
 	R.Message = xx.Message
 	if xx.Message == "" {
-		m.String(200, "煞笔你要读的信息呢")
+		m.String(200, "煞笔你要改的信息呢")
 		return
 	}
 	service.CheckMessage1(xx.Message, R.Commenter)
@@ -86,4 +86,27 @@ func ChangeComment(m *gin.Context) {
 	}
 	m.String(200, "已成功修改")
 	modle.Comment4 = false
+}
+func DeleteComment(m *gin.Context) {
+	if modle.LoginUser == "" {
+		m.String(200, "请先登录")
+		return
+	}
+	var x modle.Comment1
+	m.ShouldBind(&x)
+	if x.Message == "" {
+		m.String(200, "煞笔你要删的信息呢")
+		return
+	}
+	service.CheckMessage1(x.Message, modle.LoginUser)
+	var z modle.Comment
+	z.Commenter = modle.LoginUser
+	z.Detail = x.Detail
+	z.Message = x.Message
+	err := service.DeleteComment(z)
+	if err != nil {
+		util.Number8InternalErr(m)
+		return
+	}
+	m.String(200, "删除成功")
 }

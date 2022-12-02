@@ -42,3 +42,23 @@ func ChangeComment(m modle.Comment) error {
 	fmt.Println(err)
 	return err
 }
+func DeleteComment(m modle.Comment) error {
+	x, err := database.Query("select * from comment")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var z modle.Comment5
+	var d int
+	for x.Next() {
+		x.Scan(&z.Id, &z.Message, &z.Detail, &z.Commenter)
+		if m.Commenter == z.Commenter && z.Detail == m.Detail && z.Message == m.Message {
+			d = z.Id
+			break
+		}
+	}
+	_, err = database.Exec("delete from comment where id=?", d)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return err
+}

@@ -22,7 +22,7 @@ func SetApi() {
 		z.GET("/PresentComment", SendComment)
 		z.POST("/GetComment", GetComment)
 		z.PUT("/ChangeComment", ChangeComment)
-		z.DELETE("/ChangeComment")
+		z.DELETE("/DeleteComment", DeleteComment)
 	}
 	r.Run()
 }
