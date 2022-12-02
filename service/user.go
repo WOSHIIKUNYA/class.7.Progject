@@ -18,3 +18,12 @@ func CreatUser(m modle.User) error {
 	err := dao.InitMysql(m)
 	return err
 }
+func CheckName(m string) string {
+	if len(m) < 6 {
+		return "密码太短"
+	} else if len(m) > 15 {
+		return "密码太长"
+	} else {
+		return "密码格式正确"
+	}
+}

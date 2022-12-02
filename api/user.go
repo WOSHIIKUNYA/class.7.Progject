@@ -24,6 +24,12 @@ func register(m *gin.Context) {
 		m.String(200, "用户名重复")
 		return
 	}
+	a := service.CheckName(z.Password)
+	if a != "密码格式正确" {
+		m.String(200, a)
+		return
+	}
+	m.String(200, a)
 	err := service.CreatUser(x)
 	if err != nil {
 		util.Number1InternalErr(m)
