@@ -23,3 +23,22 @@ func GetComment(m string) error {
 	}
 	return err
 }
+func ChangeComment(m modle.Comment) error {
+	x, err := database.Query("select* from comment")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var p int
+	for x.Next() {
+		var l modle.Comment5
+		x.Scan(&l.Id, &l.Message, &l.Detail, &l.Commenter)
+		if m.Commenter == l.Commenter && m.Message == l.Message {
+			p = l.Id
+			break
+		}
+	}
+	fmt.Println(p)
+	_, err = database.Exec("update comment set detail=? where id=?", m.Detail, p)
+	fmt.Println(err)
+	return err
+}

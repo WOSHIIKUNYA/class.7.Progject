@@ -76,3 +76,20 @@ func CheckMessage(m string) error {
 	}
 	return err
 }
+func CheckMessage1(m string, r string) error {
+	x, err := database.Query("select message,commenter from comment")
+	if err != nil {
+		fmt.Println(err)
+	}
+	var f string
+	var z string
+	fmt.Println(m)
+	for x.Next() {
+		x.Scan(&f, &z)
+		if f == m && z == r {
+			modle.Comment4 = true
+			break
+		}
+	}
+	return err
+}

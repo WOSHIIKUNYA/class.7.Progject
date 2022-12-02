@@ -17,3 +17,11 @@ type Comment3 struct {
 }
 
 var Comment2 bool = false
+var Comment4 bool = false
+
+type Comment5 struct {
+	Id        int    `json:"Id"`
+	Message   string `json:"Message"`
+	Detail    string `json:"Detail"`
+	Commenter string `json:"Commenter"`
+}
