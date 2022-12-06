@@ -4,7 +4,9 @@ import (
 	"class.7.Progject/modle"
 	"class.7.Progject/service"
 	"class.7.Progject/util"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func register(m *gin.Context) {
@@ -54,8 +56,19 @@ func login(m *gin.Context) {
 		m.String(200, "用户名或密码错误")
 		return
 	}
+
+	m.SetCookie("Name", "good", 3600, "/", "localhost", false, true)
 	m.JSON(200, x.Name)
-	m.SetCookie("Name", x.Password, 0, "", "/", false, false)
-	modle.LoginUser = x.Name
-	m.String(200, "已登入，欢迎:", x.Name)
+}
+func CheckLogin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		cookie, err := c.Cookie("Name")
+		fmt.Println(err)
+		if cookie == "good" {
+			c.Next()
+			return
+		}
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "err"})
+		return
+	}
 }

@@ -7,7 +7,7 @@ type Message struct {
 	Detail     string `json:"Detail"`
 }
 
-var LoginUser string = ""
+var LoginUser string
 
 type Add struct {
 	ReceiveUid string `json:"ReceiveUid"`

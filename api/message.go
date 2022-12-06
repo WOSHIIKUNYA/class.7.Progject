@@ -36,10 +36,6 @@ func GiveMessage(m *gin.Context) {
 	m.String(200, "已成功发送")
 }
 func GetMessage(m *gin.Context) {
-	if modle.LoginUser == "" {
-		m.String(200, "请先登录")
-		return
-	}
 	err, l := service.Get(modle.LoginUser)
 	if err != nil {
 		util.Number4InternalErr(m)
